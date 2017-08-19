@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Todo</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin: 5% auto">
+            <h1>Todo</h1>
+            <div class="input-group">
+                <input type="text" id="input" class="form-control" placeholder="Type something">
+                <div class="input-group-btn">
+                    <button onclick="todo()" class="btn btn-info" type="submit">ADD
+                           <!-- Add <i class="glyphicon glyphicon-plus"></i> -->
+                    </button>
+                </div>
+            </div>
+            <div style="margin:5% auto">
+                <ul id="list" class="list-group"></ul>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA9uczlWZIosBbmMG0yWRilc3-q9pWWdi0",
+    authDomain: "todo-app-6e3ac.firebaseapp.com",
+    databaseURL: "https://todo-app-6e3ac.firebaseio.com",
+    projectId: "todo-app-6e3ac",
+    storageBucket: "todo-app-6e3ac.appspot.com",
+    messagingSenderId: "760883208165"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+.glyphicon {
+    float: right;
+}
+.glyphicon:hover{
+    color: red;
+}
