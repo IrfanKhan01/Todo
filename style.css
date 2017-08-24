@@ -1,6 +1,11 @@
 .glyphicon {
     float: right;
+    margin-left: 5%;
+    font-size: 16px;
 }
-.glyphicon:hover{
+.glyphicon-trash:hover{
     color: red;
+}
+.glyphicon-edit:hover {
+    color: deepskyblue;
 }

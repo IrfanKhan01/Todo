@@ -2,7 +2,7 @@ var database = firebase.database().ref('/');
 var input = document.getElementById('input')
 var unOrderList = document.getElementById('list')
 
-function todo() {
+function add() {
     var todo = {
         item: input.value,
         todo: 'DONE'
@@ -14,22 +14,68 @@ function todo() {
 
 database.child('todo').on("child_added", function (snapshot) {
     var demo = snapshot.val()
-    demo.id = snapshot.key
+    demo.id = snapshot.key;
+    render(demo)
 
+});
+function render(todo) {
+    
     var list = document.createElement('LI')
-    var tagText = document.createTextNode(demo.item);
+    var tagText = document.createTextNode(todo.item);
     list.setAttribute('class', 'list-group-item');
     list.appendChild(tagText);      
+    list.setAttribute('id',todo.id)
 
+    // Span For delete button
     var spanNode = document.createElement('span');
     spanNode.setAttribute('class', 'glyphicon glyphicon-trash');
-    spanNode.setAttribute('id', 'delete');
+    spanNode.setAttribute('title', 'Delete');
+
+    // remove function
+    spanNode.onclick = function() {
+        remove(todo.id);
+    }
     list.appendChild(spanNode);
     unOrderList.appendChild(list);
-});
-document.getElementById('delete').onclick = function() {
-    database.child('todo').on("child_removed", function (snapshot) {
-       remove(snapshot.val())
-    });
 
+
+    // span for Edit
+    var edit = document.createElement('SPAN');
+    edit.setAttribute('class', 'glyphicon glyphicon-edit');
+    edit.setAttribute('title', 'Edit');
+
+
+    // Edit function
+    edit.onclick = function() {
+        editTxt(todo.item, todo.id)
+    }
+    list.appendChild(edit);
+    unOrderList.appendChild(list);
 }
+function remove(key) {
+    database.child('todo/'+ key).remove();
+}
+
+database.child('todo').on('child_removed', function(data) {
+    var deletedLi = document.getElementById(data.key);
+    deletedLi.remove();
+});
+
+function editTxt(txt,key) {
+    var prom = prompt('Rewrite your todo text');
+    database.child('todo').child(key).update({
+        item: prom
+    });
+}
+database.child('todo/').on('child_changed', function(data){
+    var changedLi = document.getElementById(data.key);
+    console.log(data.key);
+
+//    console.log(data.val());
+//    changedLi.firstElementChild = data.val();
+// changedLi.innerText = data.val().item;
+console.log(changedLi.innerText.nodeValue)
+
+
+
+})
