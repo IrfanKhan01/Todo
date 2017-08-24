@@ -69,12 +69,10 @@ function editTxt(txt,key) {
 }
 database.child('todo/').on('child_changed', function(data){
     var changedLi = document.getElementById(data.key);
-    console.log(data.key);
-
-//    console.log(data.val());
-//    changedLi.firstElementChild = data.val();
-// changedLi.innerText = data.val().item;
-console.log(changedLi.innerText.nodeValue)
+    
+    // console.log(data.key);
+// console.log(changedLi.firstChild.nodeValue)
+    changedLi.firstChild.nodeValue = data.val().item;
 
 
 
