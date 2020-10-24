@@ -1,3 +1,3 @@
-Todo App using firebase as a databse  
+Todo App using reactjs + firebase
 
 [Live Demo](https://todo-app-6e3ac.firebaseapp.com/)
